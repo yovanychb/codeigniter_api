@@ -14,8 +14,8 @@ class RestController extends CI_Controller
     {
         parent::__construct();
         header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET');
-        header("Access-Control-Allow-Headers: X-Requested-With");
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+        header("Access-Control-Allow-Headers: *");
     }
 
     /**

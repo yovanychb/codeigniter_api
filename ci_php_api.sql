@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ci_php`
 --
-
+CREATE DATABASE ci_php_api;
+USE ci_php_api;
 -- --------------------------------------------------------
 
 --
@@ -41,6 +42,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuarios`, `nombre`, `apellido`) VALUES
 (1, 'Juan', 'Perez'),
 (2, 'Jose', 'Lopez'),
+(3, 'Alan', 'Brito'),
 (4, 'Nayib', 'Bukele');
 
 --

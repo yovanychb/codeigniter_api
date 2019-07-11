@@ -23,7 +23,12 @@ class UsuariosRest extends RestController
      */
     public function get()
     {
-        echo json_encode($this->UsuariosModel->getAll());
+        $data = $this->UsuariosModel->getAll();
+        if (isset($data)) {
+            echo json_encode($data);
+        } else {
+            echo "No se encontraron registros";
+        }
     }
 
     /**
@@ -31,7 +36,12 @@ class UsuariosRest extends RestController
      */
     public function getById($id)
     {
-        echo json_encode($this->UsuariosModel->getById($id));
+        $data = $this->UsuariosModel->getById($id);
+        if (isset($data)) {
+            echo json_encode($data);
+        } else {
+            echo "No se encontraron registros";
+        }
     }
 
     /**
@@ -39,8 +49,12 @@ class UsuariosRest extends RestController
      */
     public function post()
     {
-        $this->UsuariosModel->ingresar($this->getData());
-        $this->get();
+        if ($this->UsuariosModel->ingresar($this->getData())){
+            $this->get();
+        } else {
+            echo "Ocurrio un error al agregar el registro";
+        }
+        
     }
 
     /**
@@ -49,8 +63,12 @@ class UsuariosRest extends RestController
     public function put()
     {
         $data2 = [$this->getData()[1], $this->getData()[2], $this->getData()[0]];
-        $this->UsuariosModel->update($data2);
-        $this->get();
+        if ($this->UsuariosModel->update($data2)){
+            $this->get();
+        }  else {
+            echo "Ocurrio un error al modificar el registro";
+        }
+        
     }
 
     /**
@@ -59,7 +77,11 @@ class UsuariosRest extends RestController
     public function delete()
     {
         $data2 = [$this->getData()[0]];
-        $this->UsuariosModel->delete($data2);
-        $this->get();
+        if ($this->UsuariosModel->delete($data2)){
+            $this->get();
+        } else {
+            echo "Ocurrio un error al eliminar el registro";
+        }
+        
     }
 }

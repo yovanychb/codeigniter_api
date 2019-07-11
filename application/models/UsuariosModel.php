@@ -19,7 +19,13 @@ class UsuariosModel extends CI_Model
     public function ingresar($datos)
     {
         $sql = "INSERT INTO usuarios(nombre,apellido) VALUES(?,?)";
-        $this->db->query($sql, $datos);
+        try {
+            $this->db->query($sql, $datos);
+            return true;
+        } catch (PDOException $th) {
+            return false;
+        }
+        
     }
 
     /**
@@ -28,7 +34,13 @@ class UsuariosModel extends CI_Model
     public function delete($id)
     {
         $sql = "DELETE FROM usuarios WHERE id_usuarios = ?";
-        $this->db->query($sql, $id);
+        try {
+            $this->db->query($sql, $id);
+            return true;
+        } catch (PDOException $th) {
+            return false;
+        }
+        
     }
 
     /**
@@ -37,7 +49,12 @@ class UsuariosModel extends CI_Model
     public function getById($id)
     {
         $sql = "SELECT * FROM usuarios WHERE id_usuarios = ?";
-        return $this->db->query($sql, $id)->row();
+        try {
+            return $this->db->query($sql, $id)->row();
+        } catch (PDOException $th) {
+            return false;
+        }
+        
     }
 
     /**
@@ -46,6 +63,11 @@ class UsuariosModel extends CI_Model
     public function update($datos)
     {
         $sql = "UPDATE usuarios SET nombre = ?,apellido = ? WHERE id_usuarios = ?";
-        $this->db->query($sql, $datos);
+        try {
+            $this->db->query($sql, $datos);
+            return true;
+        } catch (PDOException $th) {
+            return false;
+        }
     }
 }
